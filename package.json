@@ -1,0 +1,12 @@
+{
+  "name": "harmony-tf2-utils",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.1",
+    "rollup": "^4.24.4",
+    "tslib": "^2.8.1",
+    "typescript": "^5.6.3"
+  }
+}
