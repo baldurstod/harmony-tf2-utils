@@ -1,3 +1,9 @@
+var Tf2Team;
+(function (Tf2Team) {
+    Tf2Team[Tf2Team["RED"] = 0] = "RED";
+    Tf2Team[Tf2Team["BLU"] = 1] = "BLU";
+})(Tf2Team || (Tf2Team = {}));
+
 const legacyPaintKits = new Map();
 function setLegacyPaintKit(oldId, newId) {
     legacyPaintKits.set(oldId, newId.replace(/\~\d+/, ''));
@@ -131,4 +137,4 @@ class UniformRandomStream {
     }
 }
 
-export { PaintKitDefinitions, UniformRandomStream, getLegacyPaintKit, setLegacyPaintKit };
+export { PaintKitDefinitions, Tf2Team, UniformRandomStream, getLegacyPaintKit, setLegacyPaintKit };

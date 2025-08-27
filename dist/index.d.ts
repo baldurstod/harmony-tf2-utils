@@ -17,6 +17,11 @@ export declare interface ProtoDefID {
 
 export declare function setLegacyPaintKit(oldId: number, newId: string): void;
 
+export declare enum Tf2Team {
+    RED = 0,
+    BLU = 1
+}
+
 export declare class UniformRandomStream {
     #private;
     constructor(seed?: number);
