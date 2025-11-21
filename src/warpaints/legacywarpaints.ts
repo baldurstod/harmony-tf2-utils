@@ -1,9 +1,9 @@
-const legacyPaintKits = new Map<number, string>();
+const legacyWarpaints = new Map<number, string>();
 
-export function setLegacyPaintKit(oldId: number, newId: string) {
-	legacyPaintKits.set(oldId, newId.replace(/\~\d+/, ''));
+export function setLegacyWarpaint(oldId: number, newId: string) {
+	legacyWarpaints.set(oldId, newId.replace(/\~\d+/, ''));
 }
 
-export function getLegacyPaintKit(id: number): string | number {
-	return legacyPaintKits.get(id) ?? id;
+export function getLegacyWarpaint(id: number): string | number {
+	return legacyWarpaints.get(id) ?? id;
 }

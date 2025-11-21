@@ -1,4 +1,4 @@
-const TYPE_STRING_TO_INT: any = {
+const TYPE_STRING_TO_INT: any = {// TODO: turn into map
 	'DEF_TYPE_PAINTKIT_VARIABLES': 6,
 	'DEF_TYPE_PAINTKIT_OPERATION': 7,
 	'DEF_TYPE_PAINTKIT_ITEM_DEFINITION': 8,
@@ -11,7 +11,7 @@ export interface ProtoDefID {
 	defindex: number;
 }
 
-export class PaintKitDefinitions {
+export class WarpaintDefinitions {
 	static warpaintDefinitionsPromise: Promise<any>;
 	static warpaintDefinitions: any;
 	static #warpaintDefinitionsURL: string = '';

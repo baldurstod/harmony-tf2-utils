@@ -1,3 +1,3 @@
-export * from './legacypaintkits';
-export * from './paintkitdefinitions';
+export * from './legacywarpaints';
 export * from './uniformrandomstream';
+export * from './warpaintsdefinitions';

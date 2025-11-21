@@ -1,21 +1,11 @@
-export declare function getLegacyPaintKit(id: number): string | number;
-
-export declare class PaintKitDefinitions {
-    #private;
-    static warpaintDefinitionsPromise: Promise<any>;
-    static warpaintDefinitions: any;
-    static setWarpaintDefinitionsURL(url: string): void;
-    static getWarpaintDefinitions(): Promise<any>;
-    static setWarpaintDefinitions(warpaintDefinitions: any): void;
-    static getDefinition(cMsgProtoDefID: any): Promise<any>;
-}
+export declare function getLegacyWarpaint(id: number): string | number;
 
 export declare interface ProtoDefID {
     type: number;
     defindex: number;
 }
 
-export declare function setLegacyPaintKit(oldId: number, newId: string): void;
+export declare function setLegacyWarpaint(oldId: number, newId: string): void;
 
 export declare enum Tf2Team {
     RED = 0,
@@ -29,6 +19,16 @@ export declare class UniformRandomStream {
     randomFloat(low?: number, high?: number): number;
     randomFloatExp(low?: number, high?: number): number;
     randomInt(low: number, high: number): number;
+}
+
+export declare class WarpaintDefinitions {
+    #private;
+    static warpaintDefinitionsPromise: Promise<any>;
+    static warpaintDefinitions: any;
+    static setWarpaintDefinitionsURL(url: string): void;
+    static getWarpaintDefinitions(): Promise<any>;
+    static setWarpaintDefinitions(warpaintDefinitions: any): void;
+    static getDefinition(cMsgProtoDefID: any): Promise<any>;
 }
 
 export { }

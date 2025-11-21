@@ -4,53 +4,12 @@ var Tf2Team;
     Tf2Team[Tf2Team["BLU"] = 1] = "BLU";
 })(Tf2Team || (Tf2Team = {}));
 
-const legacyPaintKits = new Map();
-function setLegacyPaintKit(oldId, newId) {
-    legacyPaintKits.set(oldId, newId.replace(/\~\d+/, ''));
+const legacyWarpaints = new Map();
+function setLegacyWarpaint(oldId, newId) {
+    legacyWarpaints.set(oldId, newId.replace(/\~\d+/, ''));
 }
-function getLegacyPaintKit(id) {
-    return legacyPaintKits.get(id) ?? id;
-}
-
-const TYPE_STRING_TO_INT = {
-    'DEF_TYPE_PAINTKIT_VARIABLES': 6,
-    'DEF_TYPE_PAINTKIT_OPERATION': 7,
-    'DEF_TYPE_PAINTKIT_ITEM_DEFINITION': 8,
-    'DEF_TYPE_PAINTKIT_DEFINITION': 9,
-    'DEF_TYPE_HEADER_ONLY': 10,
-};
-class PaintKitDefinitions {
-    static warpaintDefinitionsPromise;
-    static warpaintDefinitions;
-    static #warpaintDefinitionsURL = '';
-    static setWarpaintDefinitionsURL(url) {
-        this.#warpaintDefinitionsURL = url;
-    }
-    static getWarpaintDefinitions() {
-        if (!this.warpaintDefinitionsPromise) {
-            this.warpaintDefinitionsPromise = new Promise(async (resolve, reject) => {
-                let reponse = await fetch(this.#warpaintDefinitionsURL);
-                this.warpaintDefinitions = await reponse.json();
-                resolve(this.warpaintDefinitions);
-            });
-        }
-        return this.warpaintDefinitionsPromise;
-    }
-    static setWarpaintDefinitions(warpaintDefinitions) {
-        this.warpaintDefinitionsPromise = new Promise(async (resolve) => {
-            resolve(warpaintDefinitions);
-        });
-    }
-    static async getDefinition(cMsgProtoDefID) {
-        let warpaintDefinitions = await this.getWarpaintDefinitions();
-        if (warpaintDefinitions) {
-            let type = warpaintDefinitions[String(TYPE_STRING_TO_INT[String(cMsgProtoDefID.type)] ?? cMsgProtoDefID.type)];
-            if (type) {
-                return type[String(cMsgProtoDefID.defindex)];
-            }
-        }
-        return null;
-    }
+function getLegacyWarpaint(id) {
+    return legacyWarpaints.get(id) ?? id;
 }
 
 const NTAB = 32;
@@ -137,4 +96,45 @@ class UniformRandomStream {
     }
 }
 
-export { PaintKitDefinitions, Tf2Team, UniformRandomStream, getLegacyPaintKit, setLegacyPaintKit };
+const TYPE_STRING_TO_INT = {
+    'DEF_TYPE_PAINTKIT_VARIABLES': 6,
+    'DEF_TYPE_PAINTKIT_OPERATION': 7,
+    'DEF_TYPE_PAINTKIT_ITEM_DEFINITION': 8,
+    'DEF_TYPE_PAINTKIT_DEFINITION': 9,
+    'DEF_TYPE_HEADER_ONLY': 10,
+};
+class WarpaintDefinitions {
+    static warpaintDefinitionsPromise;
+    static warpaintDefinitions;
+    static #warpaintDefinitionsURL = '';
+    static setWarpaintDefinitionsURL(url) {
+        this.#warpaintDefinitionsURL = url;
+    }
+    static getWarpaintDefinitions() {
+        if (!this.warpaintDefinitionsPromise) {
+            this.warpaintDefinitionsPromise = new Promise(async (resolve, reject) => {
+                let reponse = await fetch(this.#warpaintDefinitionsURL);
+                this.warpaintDefinitions = await reponse.json();
+                resolve(this.warpaintDefinitions);
+            });
+        }
+        return this.warpaintDefinitionsPromise;
+    }
+    static setWarpaintDefinitions(warpaintDefinitions) {
+        this.warpaintDefinitionsPromise = new Promise(async (resolve) => {
+            resolve(warpaintDefinitions);
+        });
+    }
+    static async getDefinition(cMsgProtoDefID) {
+        let warpaintDefinitions = await this.getWarpaintDefinitions();
+        if (warpaintDefinitions) {
+            let type = warpaintDefinitions[String(TYPE_STRING_TO_INT[String(cMsgProtoDefID.type)] ?? cMsgProtoDefID.type)];
+            if (type) {
+                return type[String(cMsgProtoDefID.defindex)];
+            }
+        }
+        return null;
+    }
+}
+
+export { Tf2Team, UniformRandomStream, WarpaintDefinitions, getLegacyWarpaint, setLegacyWarpaint };
