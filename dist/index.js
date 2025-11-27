@@ -121,9 +121,14 @@ class WarpaintDefinitions {
         return this.warpaintDefinitionsPromise;
     }
     static setWarpaintDefinitions(warpaintDefinitions) {
-        this.warpaintDefinitionsPromise = new Promise(async (resolve) => {
-            resolve(warpaintDefinitions);
-        });
+        if (warpaintDefinitions) {
+            this.warpaintDefinitionsPromise = new Promise(async (resolve) => {
+                resolve(warpaintDefinitions);
+            });
+        }
+        else {
+            this.warpaintDefinitionsPromise = null;
+        }
     }
     static async getDefinition(cMsgProtoDefID) {
         let warpaintDefinitions = await this.getWarpaintDefinitions();

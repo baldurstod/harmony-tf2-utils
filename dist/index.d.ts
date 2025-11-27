@@ -1,3 +1,5 @@
+import { JSONObject } from 'harmony-types';
+
 export declare function getLegacyWarpaint(id: number): string | number;
 
 export declare interface ProtoDefID {
@@ -23,12 +25,12 @@ export declare class UniformRandomStream {
 
 export declare class WarpaintDefinitions {
     #private;
-    static warpaintDefinitionsPromise: Promise<any>;
-    static warpaintDefinitions: any;
+    static warpaintDefinitionsPromise: Promise<JSONObject> | null;
+    static warpaintDefinitions: JSONObject;
     static setWarpaintDefinitionsURL(url: string): void;
-    static getWarpaintDefinitions(): Promise<any>;
-    static setWarpaintDefinitions(warpaintDefinitions: any): void;
-    static getDefinition(cMsgProtoDefID: any): Promise<any>;
+    static getWarpaintDefinitions(): Promise<JSONObject>;
+    static setWarpaintDefinitions(warpaintDefinitions: JSONObject | null): void;
+    static getDefinition(cMsgProtoDefID: JSONObject): Promise<JSONObject | null>;
 }
 
 export { }

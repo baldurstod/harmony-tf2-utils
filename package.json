@@ -1,7 +1,7 @@
 {
   "name": "harmony-tf2-utils",
-  "version": "0.0.2",
-	"type": "module",
+  "version": "0.0.3",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "devDependencies": {
@@ -9,5 +9,8 @@
     "rollup": "^4.24.4",
     "tslib": "^2.8.1",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "harmony-types": "github:baldurstod/harmony-types"
   }
 }

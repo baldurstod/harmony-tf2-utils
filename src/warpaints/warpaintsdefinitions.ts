@@ -1,3 +1,5 @@
+import { JSONObject } from 'harmony-types';
+
 const TYPE_STRING_TO_INT: any = {// TODO: turn into map
 	'DEF_TYPE_PAINTKIT_VARIABLES': 6,
 	'DEF_TYPE_PAINTKIT_OPERATION': 7,
@@ -12,15 +14,15 @@ export interface ProtoDefID {
 }
 
 export class WarpaintDefinitions {
-	static warpaintDefinitionsPromise: Promise<any>;
-	static warpaintDefinitions: any;
+	static warpaintDefinitionsPromise: Promise<JSONObject> | null;
+	static warpaintDefinitions: JSONObject;
 	static #warpaintDefinitionsURL: string = '';
 
 	static setWarpaintDefinitionsURL(url: string) {
 		this.#warpaintDefinitionsURL = url;
 	}
 
-	static getWarpaintDefinitions(): Promise<any> {
+	static getWarpaintDefinitions(): Promise<JSONObject> {
 		if (!this.warpaintDefinitionsPromise) {
 			this.warpaintDefinitionsPromise = new Promise(async (resolve, reject) => {
 				let reponse = await fetch(this.#warpaintDefinitionsURL);
@@ -31,18 +33,22 @@ export class WarpaintDefinitions {
 		return this.warpaintDefinitionsPromise;
 	}
 
-	static setWarpaintDefinitions(warpaintDefinitions: any) {
-		this.warpaintDefinitionsPromise = new Promise(async resolve => {
-			resolve(warpaintDefinitions);
-		});
+	static setWarpaintDefinitions(warpaintDefinitions: JSONObject | null) {
+		if (warpaintDefinitions) {
+			this.warpaintDefinitionsPromise = new Promise(async resolve => {
+				resolve(warpaintDefinitions);
+			});
+		} else {
+			this.warpaintDefinitionsPromise = null;
+		}
 	}
 
-	static async getDefinition(cMsgProtoDefID: any): Promise<any> {
+	static async getDefinition(cMsgProtoDefID: JSONObject): Promise<JSONObject | null> {
 		let warpaintDefinitions = await this.getWarpaintDefinitions();
 		if (warpaintDefinitions) {
-			let type = warpaintDefinitions[String(TYPE_STRING_TO_INT[String(cMsgProtoDefID.type)] ?? cMsgProtoDefID.type)];
+			let type = warpaintDefinitions[String(TYPE_STRING_TO_INT[String(cMsgProtoDefID.type)] ?? cMsgProtoDefID.type)] as JSONObject;
 			if (type) {
-				return type[String(cMsgProtoDefID.defindex)];
+				return type[String(cMsgProtoDefID.defindex)] as JSONObject;
 			}
 		}
 		return null;
