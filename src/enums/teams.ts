@@ -1,4 +1,5 @@
 export enum Tf2Team {
-	RED = 0,
-	BLU = 1,
-}
+	None = -1,
+	Red = 0,
+	Blu = 1,
+};
