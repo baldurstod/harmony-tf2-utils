@@ -10,8 +10,9 @@ export declare interface ProtoDefID {
 export declare function setLegacyWarpaint(oldId: number, newId: string): void;
 
 export declare enum Tf2Team {
-    RED = 0,
-    BLU = 1
+    None = -1,
+    Red = 0,
+    Blu = 1
 }
 
 export declare class UniformRandomStream {

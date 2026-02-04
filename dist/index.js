@@ -1,7 +1,8 @@
 var Tf2Team;
 (function (Tf2Team) {
-    Tf2Team[Tf2Team["RED"] = 0] = "RED";
-    Tf2Team[Tf2Team["BLU"] = 1] = "BLU";
+    Tf2Team[Tf2Team["None"] = -1] = "None";
+    Tf2Team[Tf2Team["Red"] = 0] = "Red";
+    Tf2Team[Tf2Team["Blu"] = 1] = "Blu";
 })(Tf2Team || (Tf2Team = {}));
 
 const legacyWarpaints = new Map();
